@@ -31,7 +31,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="/register" class="space-y-5" onsubmit="event.preventDefault();">
+            <form method="POST" action="/register" class="space-y-5">
                 @csrf
 
                 <div>
@@ -170,15 +170,9 @@
             const submitBtn = document.getElementById('submit-btn');
             const loadingBtn = document.getElementById('loading-btn');
             if (form && submitBtn && loadingBtn) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
+                form.addEventListener('submit', () => {
                     submitBtn.classList.add('hidden');
                     loadingBtn.classList.remove('hidden');
-                    
-                    setTimeout(() => {
-                        submitBtn.classList.remove('hidden');
-                        loadingBtn.classList.add('hidden');
-                    }, 2000);
                 });
             }
         });

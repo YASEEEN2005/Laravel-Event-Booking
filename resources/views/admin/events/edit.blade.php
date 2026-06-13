@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
         <aside class="lg:col-span-3 premium-card rounded-2xl p-5 space-y-6">
             <div class="border-b border-slate-100 pb-4">
                 <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Control Panel</span>
@@ -14,7 +13,7 @@
             <nav class="flex flex-col space-y-1">
                 <a href="/admin" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#4F46E5] hover:bg-slate-50 transition">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
                     <span>Dashboard</span>
                 </a>
@@ -26,26 +25,11 @@
                     <span>Manage Events</span>
                 </a>
 
-                <a href="/admin/bookings" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#4F46E5] hover:bg-slate-50 transition">
-                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
-                    </svg>
-                    <span>Manage Bookings</span>
-                </a>
-
                 <a href="/admin/users" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#4F46E5] hover:bg-slate-50 transition">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                     <span>Users List</span>
-                </a>
-
-                <a href="/admin/settings" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#4F46E5] hover:bg-slate-50 transition">
-                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <span>System Settings</span>
                 </a>
             </nav>
         </aside>
@@ -63,8 +47,18 @@
                 </div>
             </div>
 
+            @if ($errors->any())
+                <div class="p-4 rounded-2xl bg-rose-50 border border-rose-100 text-rose-600 text-xs shadow-xs">
+                    <ul class="list-disc list-inside space-y-0.5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="premium-card rounded-2xl p-6 sm:p-8">
-                <form method="POST" action="/admin/events" class="space-y-6" onsubmit="event.preventDefault();">
+                <form method="POST" action="/admin/events/{{ $event->id }}" class="space-y-6">
                     @csrf
                     @method('PUT')
                     
@@ -72,52 +66,39 @@
                         <div class="md:col-span-2">
                             <label for="title" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Event Title</label>
                             <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                <input id="title" type="text" name="title" required value="Global AI & Agentic Systems Summit 2026"
+                                <input id="title" type="text" name="title" required value="{{ old('title', $event->title) }}" placeholder="e.g. Acoustic Sessions Live 2026"
                                     class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0">
                             </div>
                         </div>
 
                         <div>
-                            <label for="category" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Category</label>
-                            <div class="relative rounded-xl bg-slate-50 border border-slate-200">
-                                <select id="category" name="category" required
-                                    class="w-full bg-transparent border-0 text-slate-700 text-sm focus:outline-none focus:ring-0 py-3 pl-3 pr-8 cursor-pointer">
-                                    <option value="music">Music</option>
-                                    <option value="conference" selected>Conference</option>
-                                    <option value="workshop">Workshop</option>
-                                    <option value="sports">Sports</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="venue" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Location / Venue</label>
+                            <label for="location" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Location / Venue</label>
                             <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                <input id="venue" type="text" name="venue" required value="Moscone Center, SF"
+                                <input id="location" type="text" name="location" required value="{{ old('location', $event->location) }}" placeholder="e.g. San Francisco, CA"
                                     class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0">
                             </div>
                         </div>
 
                         <div>
-                            <label for="date" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Event Date & Time</label>
+                            <label for="event_date" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Event Date & Time</label>
                             <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                <input id="date" type="datetime-local" name="date" required value="2026-11-08T09:00"
-                                    class="w-full px-4 py-3 bg-transparent border-0 text-slate-750 text-sm focus:outline-none focus:ring-0">
+                                <input id="event_date" type="datetime-local" name="event_date" required value="{{ old('event_date', \Carbon\Carbon::parse($event->event_date)->format('Y-m-d\TH:i')) }}"
+                                    class="w-full px-4 py-3 bg-transparent border-0 text-slate-700 text-sm focus:outline-none focus:ring-0">
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4 md:col-span-2">
                             <div>
-                                <label for="capacity" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Capacity</label>
+                                <label for="available_seats" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Capacity / Seats</label>
                                 <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                    <input id="capacity" type="number" name="capacity" required value="150" min="1"
+                                    <input id="available_seats" type="number" name="available_seats" required value="{{ old('available_seats', $event->available_seats) }}" placeholder="150" min="1"
                                         class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0">
                                 </div>
                             </div>
                             <div>
                                 <label for="price" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Price ($)</label>
                                 <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                    <input id="price" type="number" name="price" required value="299.00" min="0" step="0.01"
+                                    <input id="price" type="number" name="price" required value="{{ old('price', $event->price) }}" placeholder="89.00" min="0" step="0.01"
                                         class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0">
                                 </div>
                             </div>
@@ -126,15 +107,15 @@
                         <div class="md:col-span-2">
                             <label for="description" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Event Description</label>
                             <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                <textarea id="description" name="description" rows="4" required
-                                    class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0 resize-none">Join developers, pipeline architects, neural researchers, and industry founders from all around the world to map out the future of autonomous systems. This summit is a deep dive into active agent networks, orchestration layers, fine-tuning methodologies, and safe model execution environments.</textarea>
+                                <textarea id="description" name="description" rows="4" required placeholder="Describe what attendees should expect..."
+                                    class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0 resize-none">{{ old('description', $event->description) }}</textarea>
                             </div>
                         </div>
 
                         <div class="md:col-span-2">
                             <label for="image" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Event Banner Image URL</label>
                             <div class="relative rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 focus-within:border-[#4F46E5] focus-within:bg-white transition-all duration-200">
-                                <input id="image" type="url" name="image" value="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80"
+                                <input id="image" type="url" name="image" value="{{ old('image', $event->image) }}" placeholder="https://images.unsplash.com/..."
                                     class="w-full px-4 py-3 bg-transparent border-0 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-0">
                             </div>
                         </div>

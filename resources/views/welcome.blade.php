@@ -20,13 +20,6 @@
                     </svg>
                     <span>Browse Events</span>
                 </a>
-                <a href="#how-it-works" class="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl text-sm font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-all">
-                    <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>How It Works</span>
-                </a>
             </div>
 
             <div class="pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -132,153 +125,79 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="premium-card rounded-2xl overflow-hidden hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 flex flex-col group">
-                <div class="h-44 bg-slate-100 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt="Music Concert" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3">
-                        <span class="text-[10px] font-bold text-[#4F46E5] bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-lg">
-                            Music
-                        </span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center text-xs text-slate-400 mb-2">
-                            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span>Oct 14, 2026</span>
+            @forelse($events as $event)
+                @php
+                    $cat = 'Event';
+                    $color = 'indigo';
+                    $titleLower = strtolower($event->title);
+                    if (str_contains($titleLower, 'summit') || str_contains($titleLower, 'forum') || str_contains($titleLower, 'conference')) {
+                        $cat = 'Conference';
+                        $color = 'pink';
+                    } elseif (str_contains($titleLower, 'rock') || str_contains($titleLower, 'acoustic') || str_contains($titleLower, 'music') || str_contains($titleLower, 'night') || str_contains($titleLower, 'arena')) {
+                        $cat = 'Music';
+                        $color = 'indigo';
+                    } elseif (str_contains($titleLower, 'workshop') || str_contains($titleLower, 'hub') || str_contains($titleLower, 'design') || str_contains($titleLower, 'learn')) {
+                        $cat = 'Workshop';
+                        $color = 'emerald';
+                    } elseif (str_contains($titleLower, 'golf') || str_contains($titleLower, 'cup') || str_contains($titleLower, 'sports') || str_contains($titleLower, 'retreat') || str_contains($titleLower, 'yoga')) {
+                        $cat = 'Sports';
+                        $color = 'blue';
+                    }
+                @endphp
+                <div class="premium-card rounded-2xl overflow-hidden hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="h-44 bg-slate-100 relative overflow-hidden">
+                        <img src="{{ $event->image ?: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' }}" alt="{{ $event->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3">
+                            @if($color === 'pink')
+                                <span class="text-[10px] font-bold text-pink-600 bg-pink-50 border border-pink-100 px-2.5 py-1 rounded-lg">
+                                    {{ $cat }}
+                                </span>
+                            @elseif($color === 'emerald')
+                                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-lg">
+                                    {{ $cat }}
+                                </span>
+                            @elseif($color === 'blue')
+                                <span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-lg">
+                                    {{ $cat }}
+                                </span>
+                            @else
+                                <span class="text-[10px] font-bold text-[#4F46E5] bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-lg">
+                                    {{ $cat }}
+                                </span>
+                            @endif
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#4F46E5] transition-colors duration-200 line-clamp-1">Global Rock Arena</h3>
-                        <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">Experience the heavy synth-rock, live orchestral tracks, and stunning lights display.</p>
                     </div>
-
-                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                    
+                    <div class="p-5 flex-grow flex flex-col justify-between">
                         <div>
-                            <span class="text-[9px] text-slate-400 block uppercase tracking-wider font-semibold">Price</span>
-                            <span class="text-base font-extrabold text-[#4F46E5]">$89.00</span>
+                            <div class="flex items-center text-xs text-slate-400 mb-2">
+                                <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span>{{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#4F46E5] transition-colors duration-200 line-clamp-1">
+                                <a href="/events/{{ $event->id }}">{{ $event->title }}</a>
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">{{ $event->description }}</p>
                         </div>
-                        <a href="#" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-sm">
-                            Book Now
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="premium-card rounded-2xl overflow-hidden hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 flex flex-col group">
-                <div class="h-44 bg-slate-100 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80" alt="Tech Conference" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3">
-                        <span class="text-[10px] font-bold text-pink-600 bg-pink-50 border border-pink-100 px-2.5 py-1 rounded-lg">
-                            Conference
-                        </span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center text-xs text-slate-400 mb-2">
-                            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span>Nov 08, 2026</span>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 block uppercase tracking-wider font-semibold">Price</span>
+                                <span class="text-base font-extrabold text-[#4F46E5]">
+                                    {{ $event->price == 0 ? 'Free' : '$' . number_format($event->price, 2) }}
+                                </span>
+                            </div>
+                            <a href="/events/{{ $event->id }}" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-sm">
+                                View Details
+                            </a>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#4F46E5] transition-colors duration-200 line-clamp-1">Global AI Summit</h3>
-                        <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">Learn about new LLMs, agentic systems, and cloud architectures from core product creators.</p>
-                    </div>
-
-                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] text-slate-400 block uppercase tracking-wider font-semibold">Price</span>
-                            <span class="text-base font-extrabold text-[#4F46E5]">$299.00</span>
-                        </div>
-                        <a href="#" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-sm">
-                            Book Now
-                        </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="premium-card rounded-2xl overflow-hidden hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 flex flex-col group">
-                <div class="h-44 bg-slate-100 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="UX Workshop" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3">
-                        <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-lg">
-                            Workshop
-                        </span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
+            @empty
+                <div class="col-span-full py-12 text-center text-slate-400">
+                    No events found.
                 </div>
-                
-                <div class="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center text-xs text-slate-400 mb-2">
-                            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span>Nov 20, 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#4F46E5] transition-colors duration-200 line-clamp-1">Interaction UX Hub</h3>
-                        <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">Master dynamic component architectures, design tokens, and sleek transitions step by step.</p>
-                    </div>
-
-                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] text-slate-400 block uppercase tracking-wider font-semibold">Price</span>
-                            <span class="text-base font-extrabold text-[#4F46E5]">$45.00</span>
-                        </div>
-                        <a href="#" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-sm">
-                            Book Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="premium-card rounded-2xl overflow-hidden hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 flex flex-col group">
-                <div class="h-44 bg-slate-100 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80" alt="Sports Match" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-3 left-3">
-                        <span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-lg">
-                            Sports
-                        </span>
-                    </div>
-                    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center text-xs text-slate-400 mb-2">
-                            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span>Dec 02, 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#4F46E5] transition-colors duration-200 line-clamp-1">National Golf Cup</h3>
-                        <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">Witness the championship tournament live from the best seats, featuring prime players.</p>
-                    </div>
-
-                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] text-slate-400 block uppercase tracking-wider font-semibold">Price</span>
-                            <span class="text-base font-extrabold text-[#4F46E5]">$150.00</span>
-                        </div>
-                        <a href="#" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-sm">
-                            Book Now
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
 
@@ -292,9 +211,6 @@
             <div class="mt-8 flex flex-wrap gap-4">
                 <a href="/register" class="px-5 py-3 rounded-xl text-sm font-bold bg-[#4F46E5] hover:bg-[#4338CA] text-white transition-all shadow-md">
                     Become Organizer
-                </a>
-                <a href="/contact" class="px-5 py-3 rounded-xl text-sm font-semibold text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">
-                    Contact Us
                 </a>
             </div>
         </div>
