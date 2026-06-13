@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\BookingController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -19,12 +20,18 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
-   Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::post('/events/{id}/book', [BookingController::class, 'book']);
 
-    Route::post('/events', [EventController::class, 'store']);
+    Route::get('/my-bookings', [BookingController::class, 'myBookings']);
 
-    Route::put('/events/{id}', [EventController::class, 'update']);
+    Route::delete('/bookings/{id}', [BookingController::class, 'cancelBooking']);
 
-    Route::delete('/events/{id}', [EventController::class, 'destroy']);
-});
+    Route::middleware('admin')->group(function () {
+
+        Route::post('/events', [EventController::class, 'store']);
+
+        Route::put('/events/{id}', [EventController::class, 'update']);
+
+        Route::delete('/events/{id}', [EventController::class, 'destroy']);
+    });
 });
