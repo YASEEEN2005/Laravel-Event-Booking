@@ -8,12 +8,10 @@
     <title>@yield('title', config('app.name', 'EventHub'))</title>
     <meta name="description" content="@yield('meta_description', 'Discover and book premium events seamlessly.')">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Custom inline styles for premium dark mode overlays and scrollbars -->
     <style>
         body {
             font-family: 'Outfit', sans-serif;
@@ -54,20 +52,16 @@
         }
     </style>
 
-    <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-violet-500/30 selection:text-violet-200 glow-radial">
     
-    <!-- Background glow shapes -->
     <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
     <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
-    <!-- Header Navigation -->
     <header class="sticky top-0 z-50 w-full glass-header transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Branding logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/" class="flex items-center space-x-2 group">
                         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
@@ -81,7 +75,6 @@
                     </a>
                 </div>
 
-                <!-- Main Desktop Navigation -->
                 <nav class="hidden md:flex space-x-1 items-center">
                     <a href="/" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 {{ Request::is('/') ? 'text-indigo-400 bg-white/5' : '' }}">Home</a>
                     <a href="/events" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 {{ Request::is('events*') ? 'text-indigo-400 bg-white/5' : '' }}">Explore Events</a>
@@ -94,7 +87,6 @@
                     @endauth
                 </nav>
 
-                <!-- Auth Operations desktop -->
                 <div class="hidden md:flex items-center space-x-4">
                     @auth
                         <div class="relative" id="user-menu-container">
@@ -104,7 +96,6 @@
                                     {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                                 </div>
                             </button>
-                            <!-- User dropdown panel -->
                             <div class="absolute right-0 mt-2 w-48 rounded-xl glass-card border border-white/5 shadow-2xl py-2 hidden" id="user-dropdown">
                                 <div class="px-4 py-2 border-b border-white/5">
                                     <p class="text-xs text-slate-400">Signed in as</p>
@@ -127,7 +118,6 @@
                     @endauth
                 </div>
 
-                <!-- Responsive menu hamburger icon -->
                 <div class="md:hidden flex items-center">
                     <button type="button" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none" id="mobile-menu-button">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,7 +128,6 @@
             </div>
         </div>
 
-        <!-- Mobile Drawer Navigation -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-white/5 bg-slate-950/95 backdrop-blur-lg">
                 <a href="/" class="block px-3 py-2 rounded-lg text-base font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition">Home</a>
@@ -176,12 +165,10 @@
         </div>
     </header>
 
-    <!-- Main Content Slot -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
         @yield('content')
     </main>
 
-    <!-- Footer Area -->
     <footer class="w-full border-t border-white/5 bg-slate-950/40 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -236,7 +223,6 @@
         </div>
     </footer>
 
-    <!-- Interactive script triggers -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navbar = document.getElementById('navbar');

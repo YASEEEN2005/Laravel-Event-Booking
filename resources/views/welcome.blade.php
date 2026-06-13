@@ -3,29 +3,23 @@
 @section('title', 'EventHub - Discover Premium Events')
 
 @section('content')
-    <!-- Hero Showcase Block -->
     <section class="relative py-12 md:py-24 overflow-hidden rounded-3xl glass-card border border-white/5 px-6 sm:px-12 lg:px-16 flex flex-col items-center text-center">
-        <!-- Interactive background glow elements -->
         <div class="absolute -top-48 -left-48 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="absolute -bottom-48 -right-48 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
         
-        <!-- Radiant badge header -->
         <span class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-8 tracking-wide uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
             <span>Discover & Book Premium Experiences</span>
         </span>
         
-        <!-- Dynamic header text -->
         <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight max-w-4xl leading-[1.15] bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400">
             Connecting You to <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 font-black">Unforgettable</span> Moments
         </h1>
         
-        <!-- Subheading text -->
         <p class="mt-6 text-base sm:text-lg lg:text-xl text-slate-400 max-w-2xl leading-relaxed">
             Reserve your seats at high-end tech conferences, immersive art showcases, live classical concerts, and hands-on business workshops.
         </p>
 
-        <!-- Premium Integrated Search Bar -->
         <div class="mt-10 w-full max-w-3xl p-2.5 rounded-2xl bg-slate-950/80 border border-white/10 backdrop-blur-xl flex flex-col md:flex-row gap-2 shadow-2xl">
             <div class="flex-1 flex items-center px-3 gap-2">
                 <svg class="w-5 h-5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +49,6 @@
             </button>
         </div>
 
-        <!-- Social Proof Metrics -->
         <div class="mt-12 flex flex-wrap justify-center gap-8 text-slate-500 border-t border-white/5 pt-8 w-full">
             <div class="flex items-center space-x-2">
                 <span class="text-white font-bold text-lg">50k+</span>
@@ -74,7 +67,6 @@
         </div>
     </section>
 
-    <!-- Categories Grid -->
     <section class="mt-20">
         <div class="flex flex-col items-center text-center mb-10">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Browse by Category</h2>
@@ -82,7 +74,6 @@
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <!-- Technology -->
             <a href="/events?category=tech" class="group p-5 rounded-2xl glass-card hover:border-violet-500/30 hover:bg-violet-950/10 flex flex-col items-center text-center transition-all duration-300">
                 <div class="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +83,6 @@
                 <span class="text-sm font-semibold text-slate-200 group-hover:text-white transition">Technology</span>
             </a>
             
-            <!-- Music -->
             <a href="/events?category=music" class="group p-5 rounded-2xl glass-card hover:border-cyan-500/30 hover:bg-cyan-950/10 flex flex-col items-center text-center transition-all duration-300">
                 <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +92,6 @@
                 <span class="text-sm font-semibold text-slate-200 group-hover:text-white transition">Music & Concerts</span>
             </a>
 
-            <!-- Design -->
             <a href="/events?category=design" class="group p-5 rounded-2xl glass-card hover:border-pink-500/30 hover:bg-pink-950/10 flex flex-col items-center text-center transition-all duration-300">
                 <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +101,6 @@
                 <span class="text-sm font-semibold text-slate-200 group-hover:text-white transition">Art & Design</span>
             </a>
 
-            <!-- Business -->
             <a href="/events?category=business" class="group p-5 rounded-2xl glass-card hover:border-emerald-500/30 hover:bg-emerald-950/10 flex flex-col items-center text-center transition-all duration-300">
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +110,6 @@
                 <span class="text-sm font-semibold text-slate-200 group-hover:text-white transition">Business & SaaS</span>
             </a>
 
-            <!-- Sports -->
             <a href="/events?category=sports" class="group col-span-2 md:col-span-1 p-5 rounded-2xl glass-card hover:border-amber-500/30 hover:bg-amber-950/10 flex flex-col items-center text-center transition-all duration-300">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +121,6 @@
         </div>
     </section>
 
-    <!-- Featured Events Grid -->
     <section class="mt-24">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
             <div>
@@ -150,20 +136,17 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Event Entry 1 -->
             <div class="group rounded-2xl glass-card overflow-hidden hover:border-indigo-500/20 hover:shadow-[0_10px_30px_-10px_rgba(99,102,241,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
                 <div class="h-52 bg-slate-900 relative overflow-hidden flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-indigo-950/40 to-transparent"></div>
                     <div class="absolute inset-0 bg-radial-gradient from-violet-500/10 to-transparent opacity-60"></div>
                     
-                    <!-- Tech logo overlay inside banner mock -->
                     <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center text-violet-400 shadow-xl group-hover:scale-105 transition-transform duration-300">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2-1v-2.5M6 18l-2-1m2 1l2-1m-2-1v-2.5m12 2.5l2-1m-2 1l-2-1m2-1v-2.5"></path>
                         </svg>
                     </div>
                     
-                    <!-- Tag overlay -->
                     <div class="absolute top-4 left-4">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full bg-violet-950/80 backdrop-blur-md">
                             Technology
@@ -185,7 +168,6 @@
                         Gather with leaders, core developers, and researchers to discuss AI agents, pipeline integration, and neural architectures.
                     </p>
 
-                    <!-- Seating progress indicator -->
                     <div class="mt-6">
                         <div class="flex items-center justify-between text-xs mb-1.5">
                             <span class="text-slate-400 font-medium">Seating Capacity</span>
@@ -208,7 +190,6 @@
                 </div>
             </div>
 
-            <!-- Event Entry 2 -->
             <div class="group rounded-2xl glass-card overflow-hidden hover:border-indigo-500/20 hover:shadow-[0_10px_30px_-10px_rgba(99,102,241,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
                 <div class="h-52 bg-slate-900 relative overflow-hidden flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-cyan-950/40 to-transparent"></div>
@@ -241,7 +222,6 @@
                         Experience classic compositions redefined under modern acoustics and visual projectors, hosted at the Royal Albert.
                     </p>
 
-                    <!-- Seating progress indicator -->
                     <div class="mt-6">
                         <div class="flex items-center justify-between text-xs mb-1.5">
                             <span class="text-slate-400 font-medium">Seating Capacity</span>
@@ -264,7 +244,6 @@
                 </div>
             </div>
 
-            <!-- Event Entry 3 -->
             <div class="group rounded-2xl glass-card overflow-hidden hover:border-indigo-500/20 hover:shadow-[0_10px_30px_-10px_rgba(99,102,241,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
                 <div class="h-52 bg-slate-900 relative overflow-hidden flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-emerald-950/40 to-transparent"></div>
@@ -297,7 +276,6 @@
                         An interactive virtual workshop demonstrating scaling channels, self-serve funnels, and retention models.
                     </p>
 
-                    <!-- Seating progress indicator -->
                     <div class="mt-6">
                         <div class="flex items-center justify-between text-xs mb-1.5">
                             <span class="text-slate-400 font-medium">Seating Capacity</span>
@@ -322,9 +300,7 @@
         </div>
     </section>
 
-    <!-- Promotion banner / Host an Event Block -->
     <section class="mt-28 relative rounded-3xl overflow-hidden glass-card border border-white/5 p-8 sm:p-12 lg:p-16">
-        <!-- Accent circles -->
         <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none"></div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
@@ -347,7 +323,6 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Feature 1 -->
                 <div class="p-5 rounded-2xl bg-slate-950/40 border border-white/5 backdrop-blur-sm">
                     <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-3">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -358,7 +333,6 @@
                     <p class="text-xs text-slate-400 mt-1 leading-relaxed">Launch your event details and configure seating counts instantly.</p>
                 </div>
 
-                <!-- Feature 2 -->
                 <div class="p-5 rounded-2xl bg-slate-950/40 border border-white/5 backdrop-blur-sm">
                     <div class="w-8 h-8 rounded-lg bg-violet-500/10 text-violet-400 flex items-center justify-center mb-3">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -369,7 +343,6 @@
                     <p class="text-xs text-slate-400 mt-1 leading-relaxed">Prevent overbookings automatically when capacity bounds are met.</p>
                 </div>
 
-                <!-- Feature 3 -->
                 <div class="p-5 rounded-2xl bg-slate-950/40 border border-white/5 backdrop-blur-sm">
                     <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-3">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -380,7 +353,6 @@
                     <p class="text-xs text-slate-400 mt-1 leading-relaxed">Gain precise insights on ticket bookings and total capacity statistics.</p>
                 </div>
 
-                <!-- Feature 4 -->
                 <div class="p-5 rounded-2xl bg-slate-950/40 border border-white/5 backdrop-blur-sm">
                     <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +366,6 @@
         </div>
     </section>
 
-    <!-- Newsletter subscription section -->
     <section class="mt-28 mb-12 relative rounded-3xl overflow-hidden bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950/60 border border-white/5 p-8 sm:p-12 text-center">
         <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-80 h-80 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none"></div>
         
