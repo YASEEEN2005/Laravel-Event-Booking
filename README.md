@@ -1,59 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EventBook — Premium Event Booking & Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+EventBook is a high-fidelity web application built with **Laravel 12**, **Blade templates**, **Tailwind CSS**, and **Vite**. The application features a luxury Obsidian Black & Champagne Gold aesthetic and includes a complete booking flow, seat-limit validation logic, and a full-featured admin management panel.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Premium Visual Design**: Custom-designed Obsidian and Champagne Gold user interface with glassmorphic floating navigations and responsive grid layouts.
+* **Live Events Directory**: Real-time listing grid with dynamic category pills, price tags, and search/filter queries (search term, pricing categories, and date brackets).
+* **Interactive Seat Booking**: Instant ticket reservations with capacity validations that prevent double-booking or over-booking.
+* **My Bookings Space**: Dashboard for users to track confirmed/cancelled tickets with automatic seat release routines.
+* **Admin Dashboard & Management**:
+  * Real-time metrics widgets (Total Revenue, Active Users, Booking Counts).
+  * CRUD interface for managing events (Banner URL uploads, capacities, locations, and pricing).
+  * User Accounts Directory displaying details and booking tallies.
+* **REST API Endpoints**: Stateless JSON API endpoints for querying available events.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Technology Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **Core Framework**: PHP 8.2+ / Laravel 12
+* **Frontend Engine**: Blade Template Engine
+* **Asset Bundler**: Vite 6+ & PostCSS
+* **Styling**: Tailwind CSS 4+
+* **Database**: SQLite (local and production compatible)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🚀 Local Installation & Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Get EventBook running locally in a few simple steps:
 
-### Premium Partners
+### 1. Clone & Configure Environment
+Clone the repository to your local machine and copy the configuration file:
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Install Dependencies
+Install PHP and Node packages:
+```bash
+composer install
+npm install
+```
 
-## Contributing
+### 3. Initialize SQLite Database
+Create a local SQLite database file:
+```bash
+# On Unix/macOS
+touch database/database.sqlite
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# On Windows (PowerShell)
+New-Item -Path "database/database.sqlite" -ItemType "File"
+```
 
-## Code of Conduct
+Run migrations and seed the database with initial demo events:
+```bash
+php artisan migrate:fresh --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Build Assets & Start Servers
+Generate the initial Vite build:
+```bash
+npm run build
+```
 
-## Security Vulnerabilities
+Run the local development servers:
+```bash
+# To run both the Laravel server and Vite hot reloading simultaneously:
+composer dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Your app will be live at `http://127.0.0.1:8000`.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ☁️ Railway Production Deployment
+
+This project is optimized for deployment on **Railway** using a stateless container architecture.
+
+### Environment Variables
+Configure the following variables in your Railway Service dashboard:
+* `APP_ENV`: `production`
+* `APP_DEBUG`: `false`
+* `APP_KEY`: `base64:YOUR_GENERATED_KEY...` (generate via `php artisan key:generate --show`)
+* `DB_CONNECTION`: `sqlite`
+* `DB_DATABASE`: `/app/database/database.sqlite`
+* `SESSION_DRIVER`: `file`
+
+### Custom Build & Start Commands
+Since `/public/build` is excluded from git tracking, compile the assets and bootstrap directories during Railway builds:
+
+* **Build Command**:
+  ```bash
+  npm install && npm run build && composer install --no-dev --optimize-autoloader
+  ```
+* **Start Command**:
+  ```bash
+  php artisan migrate --force && php artisan view:clear && php artisan config:cache && php artisan serve --host=0.0.0.0 --port=${PORT}
+  ```
+
+---
+
+## 📡 API Endpoints
+
+### Get All Events
+Retrieve a list of active events in JSON format:
+
+* **Endpoint**: `/api/events`
+* **Method**: `GET`
+* **Response Preview**:
+  ```json
+  [
+    {
+      "id": 1,
+      "title": "Global AI & Agentic Systems Summit 2026",
+      "description": "Deep dive into active agent networks...",
+      "event_date": "2026-11-08 09:00:00",
+      "location": "Moscone Center, SF",
+      "price": "299.00",
+      "available_seats": 150,
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      "created_at": "2026-06-13T12:00:00.000000Z",
+      "updated_at": "2026-06-13T12:00:00.000000Z"
+    }
+  ]
+  ```
